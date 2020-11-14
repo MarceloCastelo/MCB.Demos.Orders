@@ -10,4 +10,13 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MCB.Demos.Orders.Gateways.WebApp.ViewModels\MCB.Demos.Orders.Gateways.WebApp.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\Customers\" />
+    <Folder Include="Controllers\Products\" />
+  </ItemGroup>
+
 </Project>
