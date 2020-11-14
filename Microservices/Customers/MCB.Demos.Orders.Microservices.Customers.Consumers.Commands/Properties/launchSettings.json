@@ -1,0 +1,11 @@
+﻿{
+  "profiles": {
+    "MCB.Demos.Orders.Microservices.Customers.Consumers.Commands": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
