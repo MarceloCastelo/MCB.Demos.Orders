@@ -20,7 +20,9 @@ namespace MCB.Demos.Orders.Ports.OpenApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options => {
+                options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MCB.Demos.Orders.Ports.OpenApi", Version = "v1" });

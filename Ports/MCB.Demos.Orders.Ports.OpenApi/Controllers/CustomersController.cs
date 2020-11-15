@@ -1,5 +1,9 @@
 ﻿using MCB.Demos.Orders.Gateways.WebApp.ViewModels.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace MCB.Demos.Orders.Ports.OpenApi.Controllers
 {
@@ -7,22 +11,25 @@ namespace MCB.Demos.Orders.Ports.OpenApi.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
-        [HttpGet]
-        public CustomersResponse Get()
+        private static readonly HttpClient _httpClient = new HttpClient();
+        private readonly string _gatewayURL;
+        private readonly JsonSerializerOptions _jsonSerializerOptions;
+
+        public CustomersController(IConfiguration configuration)
         {
-            var ordersResponse = new CustomersResponse
-            {
-                CustomerArray = new Customer[10]
-            };
+            _gatewayURL = configuration["GatewayURL"];
+            _jsonSerializerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        }
 
-            for (int i = 0; i < 10; i++)
-                ordersResponse.CustomerArray[i] = new Customer
-                {
-                    Code = (i + 1).ToString(),
-                    Name = $"Customer {i + 1}"
-                };
+        [HttpGet]
+        public async Task<CustomersResponse> Get()
+        {
+            var response = await _httpClient.GetAsync($"{_gatewayURL}/api/Customers/GetCustomers");
+            var responseContent = await response.Content.ReadAsStringAsync();
 
-            return ordersResponse;
+            var customerResponseString = JsonSerializer.Deserialize<CustomersResponse>(responseContent, _jsonSerializerOptions);
+
+            return customerResponseString;
         }
     }
 }
