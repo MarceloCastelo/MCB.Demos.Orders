@@ -3,7 +3,6 @@ using MCB.Demos.Orders.Gateways.WebApp.ViewModels.Payloads;
 using MCB.Demos.Orders.Gateways.WebApp.ViewModels.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Threading.Tasks;
 
 namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Orders

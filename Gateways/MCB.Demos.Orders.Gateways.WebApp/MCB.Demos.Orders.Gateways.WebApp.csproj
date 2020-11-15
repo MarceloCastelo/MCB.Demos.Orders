@@ -22,6 +22,9 @@
     <Protobuf Include="..\..\Microservices\Orders\MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService\Protos\getorders.proto" GrpcServices="Client">
       <Link>Protos\getorders.proto</Link>
     </Protobuf>
+    <Protobuf Include="..\..\Microservices\Products\MCB.Demos.Orders.Microservices.Products.Ports.GRPCService\Protos\getproducts.proto" GrpcServices="Client">
+      <Link>Protos\getproducts.proto</Link>
+    </Protobuf>
   </ItemGroup>
 
 </Project>

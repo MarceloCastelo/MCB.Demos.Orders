@@ -63,6 +63,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Ports", "1 - Ports", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService", "Microservices\Orders\MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService\MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService.csproj", "{381C6B4B-E1AB-4F30-8E17-DA71E5CFA81C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCB.Demos.Orders.Microservices.Products.Ports.GRPCService", "Microservices\Products\MCB.Demos.Orders.Microservices.Products.Ports.GRPCService\MCB.Demos.Orders.Microservices.Products.Ports.GRPCService.csproj", "{38E0D036-8BF0-42CB-9BCF-9CB58841741B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{381C6B4B-E1AB-4F30-8E17-DA71E5CFA81C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{381C6B4B-E1AB-4F30-8E17-DA71E5CFA81C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{381C6B4B-E1AB-4F30-8E17-DA71E5CFA81C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38E0D036-8BF0-42CB-9BCF-9CB58841741B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38E0D036-8BF0-42CB-9BCF-9CB58841741B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38E0D036-8BF0-42CB-9BCF-9CB58841741B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38E0D036-8BF0-42CB-9BCF-9CB58841741B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -152,6 +158,7 @@ Global
 		{8553BAE6-EB61-433C-A744-6E8A2C15E225} = {69402BFF-C0E1-4ED4-9A6B-C7DFD9B81D32}
 		{73856627-EDF2-4A49-BCE1-15E201207FEC} = {CD2F624B-1065-4526-A8EC-7F523FA90A4C}
 		{381C6B4B-E1AB-4F30-8E17-DA71E5CFA81C} = {8553BAE6-EB61-433C-A744-6E8A2C15E225}
+		{38E0D036-8BF0-42CB-9BCF-9CB58841741B} = {73856627-EDF2-4A49-BCE1-15E201207FEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CBD8EFCB-EEDE-4F87-9157-B46748E8D052}

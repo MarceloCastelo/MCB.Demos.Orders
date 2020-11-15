@@ -1,6 +1,8 @@
-﻿using MCB.Demos.Orders.Gateways.WebApp.ViewModels.Responses;
+﻿using Grpc.Net.Client;
+using MCB.Demos.Orders.Gateways.WebApp.ViewModels.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System.Threading.Tasks;
 
 namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Products
 {
@@ -16,21 +18,26 @@ namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Products
         }
 
         [HttpGet("GetProducts")]
-        public ProductsResponse GetProducts()
+        public async Task<ProductsResponse> GetProducts()
         {
-            var ordersResponse = new ProductsResponse
+            var productsResponse = new ProductsResponse();
+
+            var channel = GrpcChannel.ForAddress(_productsMicroserviceURL);
+            var client = new Microservices.Products.Ports.GRPCService.Protos.GetProducts.Products.ProductsClient(channel);
+            var reply = await client.GetProductsAsync(new Microservices.Products.Ports.GRPCService.Protos.GetProducts.GetProductsRequest());
+
+            productsResponse.ProductArray = new Product[reply.ProductArray.Count];
+
+            for (int i = 0; i < reply.ProductArray.Count; i++)
             {
-                ProductArray = new Product[10]
-            };
-
-            for (int i = 0; i < 10; i++)
-                ordersResponse.ProductArray[i] = new Product
+                productsResponse.ProductArray[i] = new Product
                 {
-                    Code = (i + 1).ToString(),
-                    Name = $"Product {i + 1}"
+                    Code = reply.ProductArray[i].Code,
+                    Name = reply.ProductArray[i].Name
                 };
+            }
 
-            return ordersResponse;
+            return productsResponse;
         }
     }
 }
