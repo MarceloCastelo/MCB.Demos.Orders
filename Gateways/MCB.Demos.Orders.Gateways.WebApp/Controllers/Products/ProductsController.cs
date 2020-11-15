@@ -1,5 +1,6 @@
 ﻿using MCB.Demos.Orders.Gateways.WebApp.ViewModels.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Products
 {
@@ -7,6 +8,13 @@ namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Products
     [ApiController]
     public class ProductsController : ControllerBase
     {
+        private readonly string _productsMicroserviceURL;
+
+        public ProductsController(IConfiguration configuration)
+        {
+            _productsMicroserviceURL = configuration["Microservices:ProductsURL"];
+        }
+
         [HttpGet("GetProducts")]
         public ProductsResponse GetProducts()
         {

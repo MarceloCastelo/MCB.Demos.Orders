@@ -1,6 +1,5 @@
 ﻿using Grpc.Net.Client;
 using MCB.Demos.Orders.Gateways.WebApp.ViewModels.Responses;
-using MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
@@ -24,8 +23,8 @@ namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Customers
             var customersResponse = new CustomersResponse();
 
             var channel = GrpcChannel.ForAddress(_customersMicroserviceURL);
-            var client = new Microservices.Customers.Ports.GRPCService.Customers.CustomersClient(channel);
-            var reply = await client.GetCustomersAsync(new GetCustomersRequest());
+            var client = new Microservices.Customers.Ports.GRPCService.Protos.GetCustomers.Customers.CustomersClient(channel);
+            var reply = await client.GetCustomersAsync(new Microservices.Customers.Ports.GRPCService.Protos.GetCustomers.GetCustomersRequest());
 
             customersResponse.CustomerArray = new Customer[reply.CustomerArray.Count];
 

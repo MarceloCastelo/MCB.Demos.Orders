@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService.Protos.GetOrders";
+
+package orders;
+
+service Orders {
+	rpc GetOrders (GetOrdersRequest) returns (GetOrdersReply);
+}
+
+message GetOrdersRequest {}
+
+message GetOrdersReply {
+	repeated Order orderArray  = 1;
+}
+
+message Order {
+	string code = 1;
+	google.protobuf.Timestamp date = 2;
+}

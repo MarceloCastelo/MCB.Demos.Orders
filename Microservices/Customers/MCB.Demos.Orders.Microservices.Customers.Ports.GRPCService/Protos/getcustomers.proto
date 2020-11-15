@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService";
+option csharp_namespace = "MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService.Protos.GetCustomers";
 
 package customers;
 
@@ -11,10 +11,10 @@ service Customers {
 message GetCustomersRequest {}
 
 message GetCustomersReply {
-	repeated GetCustomersReplyItem customerArray  = 1;
+	repeated Customer customerArray  = 1;
 }
 
-message GetCustomersReplyItem {
+message Customer {
 	string code = 1;
 	string name = 2;
 }

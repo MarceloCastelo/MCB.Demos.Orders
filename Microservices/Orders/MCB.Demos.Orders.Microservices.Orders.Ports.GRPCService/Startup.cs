@@ -1,11 +1,11 @@
-﻿using MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService.Services;
+﻿using MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService
+namespace MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService
 {
     public class Startup
     {
@@ -28,7 +28,7 @@ namespace MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GetCustomersService>();
+                endpoints.MapGrpcService<GetOrdersService>();
 
                 endpoints.MapGet("/", async context =>
                 {

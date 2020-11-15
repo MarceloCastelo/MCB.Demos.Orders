@@ -16,8 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\..\Microservices\Customers\MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService\Protos\customers.proto" GrpcServices="Client">
-      <Link>Protos\customers.proto</Link>
+    <Protobuf Include="..\..\Microservices\Customers\MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService\Protos\getcustomers.proto" GrpcServices="Client">
+      <Link>Protos\getcustomers.proto</Link>
+    </Protobuf>
+    <Protobuf Include="..\..\Microservices\Orders\MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService\Protos\getorders.proto" GrpcServices="Client">
+      <Link>Protos\getorders.proto</Link>
     </Protobuf>
   </ItemGroup>
 
