@@ -1,11 +1,11 @@
 ﻿using Grpc.Net.Client;
 using MCB.Demos.Orders.Gateways.WebApp.ViewModels.Responses;
+using MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 using System.Threading.Tasks;
 
-namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Orders
+namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Customers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,11 +21,12 @@ namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Orders
         [HttpGet("GetCustomers")]
         public async Task<CustomersResponse> GetCustomers()
         {
+            var customersResponse = new CustomersResponse();
+
             var channel = GrpcChannel.ForAddress(_customersMicroserviceURL);
             var client = new Microservices.Customers.Ports.GRPCService.Customers.CustomersClient(channel);
-            var reply = await client.GetCustomersAsync(new Microservices.Customers.Ports.GRPCService.GetCustomersRequest());
+            var reply = await client.GetCustomersAsync(new GetCustomersRequest());
 
-            var customersResponse = new CustomersResponse();
             customersResponse.CustomerArray = new Customer[reply.CustomerArray.Count];
 
             for (int i = 0; i < reply.CustomerArray.Count; i++)

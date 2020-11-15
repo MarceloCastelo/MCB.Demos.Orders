@@ -16,11 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Customers\" />
-    <Folder Include="Controllers\Products\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Protobuf Include="..\..\Microservices\Customers\MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService\Protos\customers.proto" GrpcServices="Client">
       <Link>Protos\customers.proto</Link>
     </Protobuf>

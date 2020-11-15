@@ -1,8 +1,5 @@
 ﻿using Grpc.Core;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService.Services
@@ -16,7 +13,7 @@ namespace MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService.Services
             _logger = logger;
         }
 
-        public override Task<GetCustomersReply> GetCustomers(GetCustomersRequest request, ServerCallContext context)
+        public async override Task<GetCustomersReply> GetCustomers(GetCustomersRequest request, ServerCallContext context)
         {
             var reply = new GetCustomersReply();
 
@@ -29,7 +26,7 @@ namespace MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService.Services
                 });
             }
 
-            return Task.FromResult(reply);
+            return await Task.FromResult(reply);
         }
     }
 }

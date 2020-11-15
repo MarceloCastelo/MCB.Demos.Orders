@@ -1,7 +1,7 @@
 ﻿using MCB.Demos.Orders.Gateways.WebApp.ViewModels.Responses;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Orders
+namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Products
 {
     [Route("api/[controller]")]
     [ApiController]
