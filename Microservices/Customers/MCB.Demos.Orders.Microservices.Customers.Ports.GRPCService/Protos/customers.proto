@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService";
+
+package customers;
+
+service Customers {
+	rpc GetCustomers (GetCustomersRequest) returns (GetCustomersReply);
+}
+
+message GetCustomersRequest {}
+
+message GetCustomersReply {
+	repeated GetCustomersReplyItem customerArray  = 1;
+}
+
+message GetCustomersReplyItem {
+	string code = 1;
+	string name = 2;
+}
