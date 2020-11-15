@@ -1,5 +1,9 @@
-﻿using MCB.Demos.Orders.Gateways.WebApp.ViewModels.Responses;
+﻿using Grpc.Net.Client;
+using MCB.Demos.Orders.Gateways.WebApp.ViewModels.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Orders
 {
@@ -7,22 +11,33 @@ namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Orders
     [ApiController]
     public class CustomersController : ControllerBase
     {
-        [HttpGet("GetCustomers")]
-        public CustomersResponse GetCustomers()
+        private readonly string _customersMicroserviceURL;
+
+        public CustomersController(IConfiguration configuration)
         {
-            var ordersResponse = new CustomersResponse
+            _customersMicroserviceURL = configuration["Microservices:CustomersURL"];
+        }
+
+        [HttpGet("GetCustomers")]
+        public async Task<CustomersResponse> GetCustomers()
+        {
+            var channel = GrpcChannel.ForAddress(_customersMicroserviceURL);
+            var client = new Microservices.Customers.Ports.GRPCService.Customers.CustomersClient(channel);
+            var reply = await client.GetCustomersAsync(new Microservices.Customers.Ports.GRPCService.GetCustomersRequest());
+
+            var customersResponse = new CustomersResponse();
+            customersResponse.CustomerArray = new Customer[reply.CustomerArray.Count];
+
+            for (int i = 0; i < reply.CustomerArray.Count; i++)
             {
-                CustomerArray = new Customer[10]
-            };
-
-            for (int i = 0; i < 10; i++)
-                ordersResponse.CustomerArray[i] = new Customer
+                customersResponse.CustomerArray[i] = new Customer
                 {
-                    Code = (i + 1).ToString(),
-                    Name = $"Customer {i + 1}"
+                    Code = reply.CustomerArray[i].Code,
+                    Name = reply.CustomerArray[i].Name
                 };
+            }
 
-            return ordersResponse;
+            return customersResponse;
         }
     }
 }
