@@ -29,6 +29,7 @@ namespace MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<GetOrdersService>();
+                endpoints.MapGrpcService<ImportOrdersService>();
 
                 endpoints.MapGet("/", async context =>
                 {

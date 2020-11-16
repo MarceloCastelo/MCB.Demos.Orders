@@ -61,9 +61,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Ports", "1 - Ports", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Ports", "1 - Ports", "{73856627-EDF2-4A49-BCE1-15E201207FEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService", "Microservices\Orders\MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService\MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService.csproj", "{381C6B4B-E1AB-4F30-8E17-DA71E5CFA81C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService", "Microservices\Orders\MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService\MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService.csproj", "{381C6B4B-E1AB-4F30-8E17-DA71E5CFA81C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCB.Demos.Orders.Microservices.Products.Ports.GRPCService", "Microservices\Products\MCB.Demos.Orders.Microservices.Products.Ports.GRPCService\MCB.Demos.Orders.Microservices.Products.Ports.GRPCService.csproj", "{38E0D036-8BF0-42CB-9BCF-9CB58841741B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MCB.Demos.Orders.Microservices.Products.Ports.GRPCService", "Microservices\Products\MCB.Demos.Orders.Microservices.Products.Ports.GRPCService\MCB.Demos.Orders.Microservices.Products.Ports.GRPCService.csproj", "{38E0D036-8BF0-42CB-9BCF-9CB58841741B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

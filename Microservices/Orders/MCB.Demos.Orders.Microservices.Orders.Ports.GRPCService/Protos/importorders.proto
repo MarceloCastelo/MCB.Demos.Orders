@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService.Protos.ImportOrders";
+
+package orders;
+
+service Orders {
+	rpc ImportOrders (ImportOrdersRequest) returns (ImportOrdersReply);
+}
+
+message ImportOrdersRequest {
+	repeated Order orderArray  = 1;
+}
+
+message ImportOrdersReply {
+	bool success  = 1;
+}
+
+message Order {
+	string code = 1;
+	google.protobuf.Timestamp date = 2;
+	Customer customer = 3;
+	repeated OrderItem orderItemArray  = 4;
+}
+
+message OrderItem{
+	int32 sequence = 1;
+	int32 quantity = 2;
+	int32 quantityNanos = 3;
+	int32 value = 4;
+	int32 valueNanos = 5;
+	Product product = 6;
+}
+
+message Customer {
+	string code = 1;
+	string name = 2;
+}
+
+message Product {
+	string code = 1;
+	string name = 2;
+}
