@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option csharp_namespace = "MCB.Demos.Orders.Microservices.Products.Ports.GRPCService.Protos.ImportProductIfNotExists";
+
+package products;
+
+service Products {
+	rpc ImportProductIfNotExists (ImportProductIfNotExistsRequest) returns (ImportProductIfNotExistsReply);
+}
+
+message ImportProductIfNotExistsRequest {
+	Product product = 1;
+}
+
+message ImportProductIfNotExistsReply {
+	bool success = 1;
+}
+
+message Product {
+	string code = 1;
+	string name = 2;
+}

@@ -4,6 +4,8 @@ using MCB.Demos.Orders.Gateways.WebApp.ViewModels.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Orders
@@ -13,10 +15,14 @@ namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Orders
     public class OrdersController : ControllerBase
     {
         private readonly string _ordersMicroserviceURL;
+        private readonly string _customersMicroserviceURL;
+        private readonly string _productsMicroserviceURL;
 
         public OrdersController(IConfiguration configuration)
         {
             _ordersMicroserviceURL = configuration["Microservices:OrdersURL"];
+            _customersMicroserviceURL = configuration["Microservices:CustomersURL"];
+            _productsMicroserviceURL = configuration["Microservices:ProductsURL"];
         }
 
         [HttpGet("GetOrders")]
@@ -43,47 +49,79 @@ namespace MCB.Demos.Orders.Gateways.WebApp.Controllers.Orders
         }
 
         [HttpPost("ImportOrders")]
-        public async Task<bool> ImportOrders([FromBody] ImportOrdersPayload importOrdersPayload)
+        public async Task<string> ImportOrders([FromBody] ImportOrdersPayload importOrdersPayload)
         {
-            var importOrdersRequest = new Microservices.Orders.Ports.GRPCService.Protos.ImportOrders.ImportOrdersRequest();
-            for (int i = 0; i < 10; i++)
+            var resultStringBuilder = new StringBuilder();
+
+            var ordersChannel = GrpcChannel.ForAddress(_ordersMicroserviceURL);
+            var importOrdersClient = new Microservices.Orders.Ports.GRPCService.Protos.ImportOrder.Orders.OrdersClient(ordersChannel);
+
+            var customersChannel = GrpcChannel.ForAddress(_customersMicroserviceURL);
+            var importCustomersClient = new Microservices.Customers.Ports.GRPCService.Protos.ImportCustomerIfNotExists.Customers.CustomersClient(customersChannel);
+
+            var productsChannel = GrpcChannel.ForAddress(_productsMicroserviceURL);
+            var importProductsClient = new Microservices.Products.Ports.GRPCService.Protos.ImportProductIfNotExists.Products.ProductsClient(productsChannel);
+
+            foreach (var importOrderViewModel in importOrdersPayload.ImportOrderModelArray)
             {
-                var order = new Microservices.Orders.Ports.GRPCService.Protos.ImportOrders.Order
+                // Import Customer
+                var customerReply = await importCustomersClient.ImportCustomerIfNotExistsAsync(new Microservices.Customers.Ports.GRPCService.Protos.ImportCustomerIfNotExists.ImportCustomerIfNotExistsRequest
                 {
-                    Code = $"{i + 1}",
-                    Date = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow.AddDays(-i)),
-                    Customer = new Microservices.Orders.Ports.GRPCService.Protos.ImportOrders.Customer
+                    Customer = new Microservices.Customers.Ports.GRPCService.Protos.ImportCustomerIfNotExists.Customer
                     {
-                        Code = $"{i + 1}",
-                        Name = $"Customer {i + 1}"
+                        Code = importOrderViewModel.Customer.Code,
+                        Name = importOrderViewModel.Customer.Name
+                    }
+                });
+                resultStringBuilder.AppendLine($"type customer - code {importOrderViewModel.Customer.Code} - success {customerReply.Success}");
+
+                // Import Order
+                var order = new Microservices.Orders.Ports.GRPCService.Protos.ImportOrder.Order
+                {
+                    Code = importOrderViewModel.Code,
+                    Date = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(importOrderViewModel.Data),
+                    Customer = new Microservices.Orders.Ports.GRPCService.Protos.ImportOrder.Customer
+                    {
+                        Code = importOrderViewModel.Customer.Code,
+                        Name = importOrderViewModel.Customer.Name
                     }
                 };
 
-                importOrdersRequest.OrderArray.Add(order);
-
-                for (int j = 0; j < 10; j++)
+                foreach (var orderItemModel in importOrderViewModel.OrderItemCollection)
                 {
-                    order.OrderItemArray.Add(new Microservices.Orders.Ports.GRPCService.Protos.ImportOrders.OrderItem
+                    // Import product
+                    var product = new Microservices.Products.Ports.GRPCService.Protos.ImportProductIfNotExists.Product
                     {
-                        Sequence = j + 1,
-                        Product = new Microservices.Orders.Ports.GRPCService.Protos.ImportOrders.Product
+                        Code = orderItemModel.Product.Code,
+                        Name = orderItemModel.Product.Name
+                    };
+                    var productReply = await importProductsClient.ImportProductIfNotExistsAsync(new Microservices.Products.Ports.GRPCService.Protos.ImportProductIfNotExists.ImportProductIfNotExistsRequest
+                    {
+                        Product = product
+                    });
+                    resultStringBuilder.AppendLine($"type product - code {product.Code} - success {productReply.Success}");
+
+                    order.OrderItemArray.Add(new Microservices.Orders.Ports.GRPCService.Protos.ImportOrder.OrderItem
+                    {
+                        Product = new Microservices.Orders.Ports.GRPCService.Protos.ImportOrder.Product
                         {
-                            Code = $"{j + 1}",
-                            Name = $"Product {j + 1}"
+                            Code = orderItemModel.Product.Code,
+                            Name = orderItemModel.Product.Name
                         },
-                        Quantity = 105,
-                        QuantityNanos = 1,
-                        Value = 25010,
-                        ValueNanos = 2
+                        Quantity = Convert.ToDouble(orderItemModel.Quantity),
+                        Value = Convert.ToDouble(orderItemModel.Value)
                     });
                 }
+
+                var orderReply = await importOrdersClient.ImportOrderAsync(new Microservices.Orders.Ports.GRPCService.Protos.ImportOrder.ImportOrderRequest { 
+                    Order = order
+                });
+
+                resultStringBuilder.AppendLine($"type order - code {order.Code} - success {orderReply.Success}");
+
             }
 
-            var channel = GrpcChannel.ForAddress(_ordersMicroserviceURL);
-            var client = new Microservices.Orders.Ports.GRPCService.Protos.ImportOrders.Orders.OrdersClient(channel);
-            var reply = await client.ImportOrdersAsync(importOrdersRequest);
-
-            return reply.Success;
+            return resultStringBuilder.ToString();
         }
     }
 }

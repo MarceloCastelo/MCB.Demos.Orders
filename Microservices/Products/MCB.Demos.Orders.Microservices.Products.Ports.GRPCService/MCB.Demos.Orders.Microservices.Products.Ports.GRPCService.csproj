@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Protobuf Include="Protos\getproducts.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\importproductifnotexists.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>

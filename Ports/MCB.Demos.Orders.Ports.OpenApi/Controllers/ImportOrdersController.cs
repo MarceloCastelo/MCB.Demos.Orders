@@ -24,7 +24,7 @@ namespace MCB.Demos.Orders.Ports.OpenApi.Controllers
         }
 
         [HttpPost]
-        public async Task<bool> Post([FromBody] ImportOrdersPayload importOrdersPayload)
+        public async Task<string> Post([FromBody] ImportOrdersPayload importOrdersPayload)
         {
             var stringContent = new StringContent(
                 JsonSerializer.Serialize(importOrdersPayload),
@@ -34,7 +34,7 @@ namespace MCB.Demos.Orders.Ports.OpenApi.Controllers
             var response = await _httpClient.PostAsync($"{_gatewayURL}/api/Orders/ImportOrders", stringContent);
             var responseContentString = await response.Content.ReadAsStringAsync();
 
-            return bool.Parse(responseContentString);
+            return responseContentString;
         }
     }
 }

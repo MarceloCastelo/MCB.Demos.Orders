@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option csharp_namespace = "MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService.Protos.ImportCustomerIfNotExists";
+
+package customers;
+
+service Customers {
+	rpc ImportCustomerIfNotExists (ImportCustomerIfNotExistsRequest) returns (ImportCustomerIfNotExistsReply);
+}
+
+message ImportCustomerIfNotExistsRequest {
+	Customer customer = 1;
+}
+
+message ImportCustomerIfNotExistsReply {
+	bool success  = 1;
+}
+
+message Customer {
+	string code = 1;
+	string name = 2;
+}

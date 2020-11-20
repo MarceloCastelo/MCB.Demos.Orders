@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using MCB.Demos.Orders.Microservices.Products.Ports.GRPCService.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,7 @@ namespace MCB.Demos.Orders.Microservices.Products.Ports.GRPCService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<GetProductsService>();
+                endpoints.MapGrpcService<ImportProductIfNotExistsService>();
 
                 endpoints.MapGet("/", async context =>
                 {

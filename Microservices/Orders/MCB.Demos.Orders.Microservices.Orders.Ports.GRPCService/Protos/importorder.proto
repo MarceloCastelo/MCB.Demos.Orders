@@ -2,19 +2,19 @@ syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
 
-option csharp_namespace = "MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService.Protos.ImportOrders";
+option csharp_namespace = "MCB.Demos.Orders.Microservices.Orders.Ports.GRPCService.Protos.ImportOrder";
 
-package orders;
+package order;
 
 service Orders {
-	rpc ImportOrders (ImportOrdersRequest) returns (ImportOrdersReply);
+	rpc ImportOrder (ImportOrderRequest) returns (ImportOrderReply);
 }
 
-message ImportOrdersRequest {
-	repeated Order orderArray  = 1;
+message ImportOrderRequest {
+	Order order = 1;
 }
 
-message ImportOrdersReply {
+message ImportOrderReply {
 	bool success  = 1;
 }
 
@@ -27,11 +27,9 @@ message Order {
 
 message OrderItem{
 	int32 sequence = 1;
-	int32 quantity = 2;
-	int32 quantityNanos = 3;
-	int32 value = 4;
-	int32 valueNanos = 5;
-	Product product = 6;
+	double quantity = 2;
+	double value = 3;
+	Product product = 4;
 }
 
 message Customer {

@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <Protobuf Include="Protos\getorders.proto" GrpcServices="Server" />
-    <Protobuf Include="Protos\importorders.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\importorder.proto" GrpcServices="Server" />
   </ItemGroup>
 
 </Project>

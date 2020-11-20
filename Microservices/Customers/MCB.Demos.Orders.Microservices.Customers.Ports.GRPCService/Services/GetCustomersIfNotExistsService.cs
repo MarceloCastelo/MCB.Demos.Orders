@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService.Services
 {
-    public class GetCustomersService : Protos.GetCustomers.Customers.CustomersBase
+    public class GetCustomersIfNotExistsService : Protos.GetCustomers.Customers.CustomersBase
     {
-        private readonly ILogger<GetCustomersService> _logger;
+        private readonly ILogger<GetCustomersIfNotExistsService> _logger;
 
-        public GetCustomersService(ILogger<GetCustomersService> logger)
+        public GetCustomersIfNotExistsService(ILogger<GetCustomersIfNotExistsService> logger)
         {
             _logger = logger;
         }
