@@ -25,9 +25,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.1 - Consumers", "2.1 - Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.3 - Domain", "2.3 - Domain", "{25DC9042-36A8-4CF7-924B-B35E78132F22}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infra", "3 - Infra", "{389BC63F-7C0D-40F6-A580-5CFB9F7943FB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.4 - Infra", "2.4 - Infra", "{389BC63F-7C0D-40F6-A580-5CFB9F7943FB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Adapters", "5 - Adapters", "{3D21E5C2-26B7-4502-924B-1457D1503285}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.5 - Adapters", "2.5 - Adapters", "{3D21E5C2-26B7-4502-924B-1457D1503285}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MCB.Demos.Orders.Presentation.WebApp", "Presentation\MCB.Demos.Orders.Presentation.WebApp\MCB.Demos.Orders.Presentation.WebApp.csproj", "{909D46BB-49D5-4990-8E5E-27FE14DD9377}"
 EndProject
@@ -43,9 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MCB.Demos.Orders.Microservi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MCB.Demos.Orders.Microservices.Customers.Domain", "Microservices\Customers\MCB.Demos.Orders.Microservices.Customers.Domain\MCB.Demos.Orders.Microservices.Customers.Domain.csproj", "{CC576BF1-85FD-43F4-8BB8-0597583F54B6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.1 - CrossCutting", "3.1 - CrossCutting", "{D637B5AD-F9A8-4291-A5D5-8844D8D96CFF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.4.1 - CrossCutting", "2.4.1 - CrossCutting", "{D637B5AD-F9A8-4291-A5D5-8844D8D96CFF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.2 - IoC", "3.2 - IoC", "{7B31FE98-C945-46B8-8A2F-237ECADAC02E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.4.2 - IoC", "2.4.2 - IoC", "{7B31FE98-C945-46B8-8A2F-237ECADAC02E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MCB.Demos.Orders.Microservices.Customers.Infra.CrossCutting", "Microservices\Customers\MCB.Demos.Orders.Microservices.Customers.Infra.CrossCutting\MCB.Demos.Orders.Microservices.Customers.Infra.CrossCutting.csproj", "{1F45A96D-E7F6-4693-86D3-BB7746D1847A}"
 EndProject
@@ -67,7 +67,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MCB.Demos.Orders.Microservi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - ApplicationCore", "2 - ApplicationCore", "{FAB6C5B9-DC8B-4F73-9377-55F5B934B8BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCB.Demos.Orders.Microservices.Customers.Messages", "Microservices\Customers\MCB.Demos.Orders.Microservices.Customers.Messages\MCB.Demos.Orders.Microservices.Customers.Messages.csproj", "{52DA8062-400C-4C3B-B86A-6AA77CE3C601}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MCB.Demos.Orders.Microservices.Customers.Messages", "Microservices\Customers\MCB.Demos.Orders.Microservices.Customers.Messages\MCB.Demos.Orders.Microservices.Customers.Messages.csproj", "{52DA8062-400C-4C3B-B86A-6AA77CE3C601}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -147,8 +147,8 @@ Global
 		{B1467443-D156-4D8E-B6C0-FC57475A1259} = {FAB6C5B9-DC8B-4F73-9377-55F5B934B8BB}
 		{346E1117-011B-474A-8164-7C8024D2C88B} = {FAB6C5B9-DC8B-4F73-9377-55F5B934B8BB}
 		{25DC9042-36A8-4CF7-924B-B35E78132F22} = {FAB6C5B9-DC8B-4F73-9377-55F5B934B8BB}
-		{389BC63F-7C0D-40F6-A580-5CFB9F7943FB} = {B49A802F-EBEA-4800-8F2F-2CEEDF2F4354}
-		{3D21E5C2-26B7-4502-924B-1457D1503285} = {B49A802F-EBEA-4800-8F2F-2CEEDF2F4354}
+		{389BC63F-7C0D-40F6-A580-5CFB9F7943FB} = {FAB6C5B9-DC8B-4F73-9377-55F5B934B8BB}
+		{3D21E5C2-26B7-4502-924B-1457D1503285} = {FAB6C5B9-DC8B-4F73-9377-55F5B934B8BB}
 		{909D46BB-49D5-4990-8E5E-27FE14DD9377} = {21839443-C84C-494E-A49C-638769C68596}
 		{D5E11933-686F-43C8-A0EE-42AB9BFA64C5} = {5072DDD8-9DC5-4417-8F32-F7F1EF0DC8AA}
 		{49517234-C0D0-4DA1-8138-D644D686036D} = {6074D00F-0A14-4AE8-A53E-CAC3DB6E2BD1}
