@@ -4,7 +4,6 @@ using MCB.Demos.Orders.Gateways.WebApp.ViewModels.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 

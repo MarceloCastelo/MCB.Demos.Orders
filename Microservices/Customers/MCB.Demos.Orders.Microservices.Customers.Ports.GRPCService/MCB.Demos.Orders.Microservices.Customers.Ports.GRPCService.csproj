@@ -13,4 +13,13 @@
     <PackageReference Include="Grpc.AspNetCore" Version="2.33.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MCB.Demos.Orders.Microservices.Customers.Application\MCB.Demos.Orders.Microservices.Customers.Application.csproj" />
+    <ProjectReference Include="..\MCB.Demos.Orders.Microservices.Customers.Messages\MCB.Demos.Orders.Microservices.Customers.Messages.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
+  </ItemGroup>
+
 </Project>

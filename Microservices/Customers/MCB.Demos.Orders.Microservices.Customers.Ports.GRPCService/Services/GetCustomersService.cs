@@ -1,29 +1,32 @@
 ﻿using Grpc.Core;
+using MCB.Demos.Orders.Microservices.Customers.Application.AppServices;
 using MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService.Protos.GetCustomers;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService.Services
 {
-    public class GetCustomersIfNotExistsService : Protos.GetCustomers.Customers.CustomersBase
+    public class GetCustomersService : Protos.GetCustomers.Customers.CustomersBase
     {
-        private readonly ILogger<GetCustomersIfNotExistsService> _logger;
+        private readonly ILogger<GetCustomersService> _logger;
+        private readonly CustomerAppService _customerAppService;
 
-        public GetCustomersIfNotExistsService(ILogger<GetCustomersIfNotExistsService> logger)
+        public GetCustomersService(ILogger<GetCustomersService> logger)
         {
             _logger = logger;
+            _customerAppService = new CustomerAppService();
         }
 
         public async override Task<GetCustomersReply> GetCustomers(GetCustomersRequest request, ServerCallContext context)
         {
             var reply = new GetCustomersReply();
 
-            for (int i = 0; i < 10; i++)
+            foreach (var customerDTO in _customerAppService.GetCustomers().CustomerCollection)
             {
                 reply.CustomerArray.Add(new Customer
                 {
-                    Code = (i + 1).ToString(),
-                    Name = $"Customer {i + 1}"
+                    Code = customerDTO.Code,
+                    Name = customerDTO.Name
                 });
             }
 

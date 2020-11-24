@@ -67,6 +67,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MCB.Demos.Orders.Microservi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - ApplicationCore", "2 - ApplicationCore", "{FAB6C5B9-DC8B-4F73-9377-55F5B934B8BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCB.Demos.Orders.Microservices.Customers.Messages", "Microservices\Customers\MCB.Demos.Orders.Microservices.Customers.Messages\MCB.Demos.Orders.Microservices.Customers.Messages.csproj", "{52DA8062-400C-4C3B-B86A-6AA77CE3C601}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +131,10 @@ Global
 		{38E0D036-8BF0-42CB-9BCF-9CB58841741B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38E0D036-8BF0-42CB-9BCF-9CB58841741B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38E0D036-8BF0-42CB-9BCF-9CB58841741B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52DA8062-400C-4C3B-B86A-6AA77CE3C601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52DA8062-400C-4C3B-B86A-6AA77CE3C601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52DA8062-400C-4C3B-B86A-6AA77CE3C601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52DA8062-400C-4C3B-B86A-6AA77CE3C601}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -162,6 +168,7 @@ Global
 		{381C6B4B-E1AB-4F30-8E17-DA71E5CFA81C} = {8553BAE6-EB61-433C-A744-6E8A2C15E225}
 		{38E0D036-8BF0-42CB-9BCF-9CB58841741B} = {73856627-EDF2-4A49-BCE1-15E201207FEC}
 		{FAB6C5B9-DC8B-4F73-9377-55F5B934B8BB} = {B49A802F-EBEA-4800-8F2F-2CEEDF2F4354}
+		{52DA8062-400C-4C3B-B86A-6AA77CE3C601} = {B49A802F-EBEA-4800-8F2F-2CEEDF2F4354}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CBD8EFCB-EEDE-4F87-9157-B46748E8D052}

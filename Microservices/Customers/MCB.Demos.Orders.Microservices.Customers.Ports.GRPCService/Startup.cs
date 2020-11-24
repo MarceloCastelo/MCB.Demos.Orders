@@ -28,8 +28,8 @@ namespace MCB.Demos.Orders.Microservices.Customers.Ports.GRPCService
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GetCustomersIfNotExistsService>();
-                endpoints.MapGrpcService<ImportCustomerService>();
+                endpoints.MapGrpcService<GetCustomersService>();
+                endpoints.MapGrpcService<ImportCustomerIfNotExistsService>();
 
                 endpoints.MapGet("/", async context =>
                 {

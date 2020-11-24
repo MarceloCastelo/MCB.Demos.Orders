@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -8,4 +8,14 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MCB.Demos.Orders.Microservices.Customers.Application\MCB.Demos.Orders.Microservices.Customers.Application.csproj" />
+    <ProjectReference Include="..\MCB.Demos.Orders.Microservices.Customers.Messages\MCB.Demos.Orders.Microservices.Customers.Messages.csproj" />
+  </ItemGroup>
+  
 </Project>
